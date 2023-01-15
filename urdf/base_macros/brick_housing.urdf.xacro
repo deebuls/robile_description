@@ -60,10 +60,10 @@ License LGPL and BSD license along with this program.
                 <origin xyz="0 0 0" rpy="0 0 0"/>
                 <geometry>
                     <xacro:if value="${with_wheel}">
-                        <mesh filename="package://robile_description/meshes/robile_brick_housing/wheeled_brick_housing.dae" scale="1 1 1"/>
+                        <mesh filename="file://$(find robile_description)/meshes/robile_brick_housing/wheeled_brick_housing.dae" scale="1 1 1"/>
                     </xacro:if>
                     <xacro:unless value="${with_wheel}">
-                        <mesh filename="package://robile_description/meshes/robile_brick_housing/general_brick_housing.dae" scale="1 1 1"/>
+                        <mesh filename="file://$(find robile_description)/meshes/robile_brick_housing/general_brick_housing.dae" scale="1 1 1"/>
                     </xacro:unless>
                 </geometry>
             </visual>
@@ -72,7 +72,7 @@ License LGPL and BSD license along with this program.
             <visual>
                 <origin xyz="0 0 0" rpy="0 0 0"/>
                 <geometry>
-                    <mesh filename="package://robile_description/meshes/robile_brick_housing/lid.dae" scale="1 1 1"/>
+                    <mesh filename="file://$(find robile_description)/meshes/robile_brick_housing/lid.dae" scale="1 1 1"/>
                 </geometry>
             </visual>
 
@@ -80,7 +80,7 @@ License LGPL and BSD license along with this program.
             <visual>
                 <origin xyz="0 0 0" rpy="0 0 0"/>
                 <geometry>
-                    <mesh filename="package://robile_description/meshes/robile_brick_housing/lid_cover_${color}.dae" scale="1 1 1"/>
+                    <mesh filename="file://$(find robile_description)/meshes/robile_brick_housing/lid_cover_${color}.dae" scale="1 1 1"/>
                 </geometry>
             </visual>
 

@@ -12,6 +12,9 @@
   <author email="sushant.chavan@locomotec.com">Sushant Chavan</author>
   <author email="dharmin.bakaraniya@locomotec.com">Dharmin B.</author>
 
-  <buildtool_depend>catkin</buildtool_depend>
-
+  <buildtool_depend>ament_cmake</buildtool_depend>
+	
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
 </package>

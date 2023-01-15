@@ -76,7 +76,7 @@ License LGPL and BSD license along with this program.
             <visual>
                 <origin xyz="0 0 0" rpy="0 0 0"/>
                 <geometry>
-                    <mesh filename="package://robile_description/meshes/kelo_drive/kelo_drive_wheel.dae" scale="1 1 1"/>
+                    <mesh filename="file://$(find robile_description)/meshes/kelo_drive/kelo_drive_wheel.dae" scale="1 1 1"/>
                 </geometry>
             </visual>
 
