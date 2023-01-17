@@ -4,7 +4,7 @@ project(robile_description)
 find_package(ament_cmake REQUIRED)
 
 
-install(DIRECTORY meshes robots urdf
+install(DIRECTORY meshes robots urdf gazebo
 	DESTINATION share/${PROJECT_NAME}/)
 
 ament_package()

@@ -56,4 +56,13 @@ License LGPL and BSD license along with this program.
         <!-- Include the xacro file to start gazebo ros planar move plugin -->
         <xacro:include filename="$(find robile_description)/gazebo/gazebo_ros_planar_move.xacro" />
     </xacro:unless>
+
+    <!-- sensors -->
+    <xacro:include filename="$(find robile_description)/urdf/sensors/hokuyo_urg04_laser.urdf.xacro"/>
+
+    <!-- base laser front -->
+    <xacro:hokuyo_urg04_laser name="base_laser_front" parent="base" ros_topic="scan_front" update_rate="10" min_angle="-1.57" max_angle="1.57">
+    <origin xyz="0.3 0 0.3" rpy="0 0 0"/>
+    </xacro:hokuyo_urg04_laser>
+
 </robot>
