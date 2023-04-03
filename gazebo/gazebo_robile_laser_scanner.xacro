@@ -1,12 +1,11 @@
 <?xml version='1.0'?>
 
 <!--
-Copyright (c) 2022
+Copyright (c) 2021
 KELO Robotics GmbH
 
 Author:
 Sushant Chavan
-Walter Nowak
 
 
 This software is published under a dual-license: GNU Lesser General Public
@@ -39,26 +38,31 @@ You should have received a copy of the GNU Lesser General Public
 License LGPL and BSD license along with this program.
 -->
 
-<robot xmlns:xacro="http://ros.org/wiki/xacro" name="gazebo_ros_planar_move">
-    <gazebo>
-        <plugin name="gazebo_ros_planar_move" filename="libgazebo_ros_planar_move.so">
-            <commandTopic>cmd_vel</commandTopic>
-            <odometryTopic>odom</odometryTopic>
-            <odometryFrame>odom</odometryFrame>
-            <odometryRate>20.0</odometryRate>
-            <robotBaseFrame>base_link</robotBaseFrame>
-        </plugin>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="robile_platform_gazebo">
 
-        <plugin name="gazebo_p3d_pose" filename="libgazebo_ros_p3d.so">
-            <alwaysOn>true</alwaysOn>
-            <updateRate>50.0</updateRate>
-            <bodyName>base_link</bodyName>
-            <topicName>ground_truth_pose</topicName>
-            <gaussianNoise>0.00</gaussianNoise>
-            <frameName>world</frameName>
-            <xyzOffsets>0 0 0</xyzOffsets>
-            <rpyOffsets>0 0 0</rpyOffsets>
-        </plugin>
+    <!-- Args are global and hence all included xacro files will also receive them 
+    https://github.com/ros/xacro/issues/204#issuecomment-852096062 -->
+    <xacro:arg name="platform_config" default="" />
+    <xacro:arg name="movable_joints" default="true" />
 
-    </gazebo>
+    <!-- Include the xacro file to instantiate the robot -->
+    <xacro:include filename="$(find robile_description)/robots/$(arg platform_config).urdf.xacro" />
+
+    <xacro:if value="$(arg movable_joints)">
+        <!-- Include the xacro file to start gazebo ros control plugin -->
+        <xacro:include filename="$(find robile_description)/gazebo/gazebo_ros_control.xacro" />
+    </xacro:if>
+    <xacro:unless value="$(arg movable_joints)">
+        <!-- Include the xacro file to start gazebo ros planar move plugin -->
+        <xacro:include filename="$(find robile_description)/gazebo/gazebo_ros_planar_move.xacro" />
+    </xacro:unless>
+
+    <!-- sensors -->
+    <xacro:include filename="$(find robile_description)/urdf/sensors/hokuyo_urg04_laser.urdf.xacro"/>
+
+    <!-- base laser front -->
+    <xacro:hokuyo_urg04_laser name="base_laser_front" parent="base" ros_topic="scan_front" update_rate="10" min_angle="-1.57" max_angle="1.57">
+    <origin xyz="0.3 0 0.3" rpy="0 0 0"/>
+    </xacro:hokuyo_urg04_laser>
+
 </robot>
