@@ -63,8 +63,9 @@ License LGPL and BSD license along with this program.
             <publish_odom_tf>true</publish_odom_tf>
 
             <!-- Frame IDs -->
-            <odometry_frame>odom</odometry_frame>
-            <robot_base_frame>base_link</robot_base_frame>
+            <!-- For multi robot these values get modified in generic_spawn.py -->
+	    <odometry_frame>odom</odometry_frame>
+	    <robot_base_frame>base_link</robot_base_frame>
 
             <!-- Set odom covariance -->
             <covariance_x>0.0001</covariance_x>
